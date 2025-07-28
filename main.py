@@ -7,6 +7,13 @@ def main():
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
 
+    # setting up the groups
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    # setting both groups as containers
+    Player.containers = (updatable, drawable)
+
     # initalize pygame
     pygame.init()
     # setting up the screen 
@@ -27,15 +34,16 @@ def main():
                 return
             
         #update the method 
-        player.update(dt)
+        updatable.update(dt)
             
         # fill the screen(Surface) with color black
         screen.fill("black")
-        # draw the player
-        player.draw(screen)
+       # draw the player
+        for drawable_object in drawable:
+            drawable_object.draw(screen)
         # refresh the screen
         pygame.display.flip()
-        
+
         # at the end of the game loop initalize a tick() variable
         fps_timer = clock.tick(60)
         # converting miliseconds to seconds
