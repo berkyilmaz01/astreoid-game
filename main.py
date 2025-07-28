@@ -1,4 +1,5 @@
 from constants import *
+from player import *
 import pygame
 
 # initalize pygame
@@ -19,10 +20,15 @@ def main():
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
 
+    # initalize a player object
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     # creating the game loop
     running = True
     while running :
+        
+        
+        
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -30,14 +36,16 @@ def main():
             
         # fill the screen(Surface) with color black
         screen.fill("black")
+        
+        # draw the player
+        player.draw(screen)
         # refresh the screen
         pygame.display.flip()
-
         # at the end of the game loop initalize a tick() variable
         fps_timer = clock.tick(60)
-
         # converting miliseconds to seconds
         dt = fps_timer / 1000
+        
 
 if __name__ == "__main__":
     main()
