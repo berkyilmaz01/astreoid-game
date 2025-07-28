@@ -6,10 +6,19 @@ pygame.init()
 # setting up the screen 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+
+# for the fps initalize clock
+clock = pygame.time.Clock()
+
+# initalize a dt variable set to 0
+dt = 0
+
+
 def main():
     print("Starting Asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
+
 
     # creating the game loop
     running = True
@@ -23,6 +32,12 @@ def main():
         screen.fill("black")
         # refresh the screen
         pygame.display.flip()
+
+        # at the end of the game loop initalize a tick() variable
+        fps_timer = clock.tick(60)
+
+        # converting miliseconds to seconds
+        dt = fps_timer / 1000
 
 if __name__ == "__main__":
     main()
