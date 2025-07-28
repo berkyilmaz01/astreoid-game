@@ -1,8 +1,9 @@
-from constants import *
-from player import *
-from asteroid import *
-from asteroidfield import *
+import sys
 import pygame
+from constants import *
+from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 def main():
     print("Starting Asteroids!")
@@ -30,9 +31,9 @@ def main():
     # initalize a dt variable set to 0
     dt = 0
     # initalize a player object
-    Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     # initalizing a asteroid object
-    AsteroidField()
+    asteroid_field = AsteroidField()
 
     # creating the game loop
     running = True
@@ -44,7 +45,13 @@ def main():
             
         #update the method 
         updatable.update(dt)
-            
+
+        #collision logic 
+        for asteroid in asteroids:
+            if asteroid.collides_with(player):
+                 print("Game over!")
+                 sys.exit()
+    
         # fill the screen(Surface) with color black
         screen.fill("black")
        # draw the player
